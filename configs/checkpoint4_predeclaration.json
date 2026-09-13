@@ -1,0 +1,10 @@
+{
+  "target_definition": "direct sound plus first 50 ms after the detected direct-path arrival, per-RIR",
+  "direct_arrival_detection_rule": "index of maximum absolute amplitude in the RIR (peak-based rule), applied per microphone channel",
+  "early_reflection_window_ms": 50,
+  "taper_rule": "5 ms raised-cosine (Hann) taper applied at the end of the 50 ms window, rather than abrupt truncation, to avoid introducing spectral artifacts from a hard cutoff",
+  "alignment_rule": "target and processed/baseline signals are cropped to the minimum common length, both starting at sample 0 relative to the same source convolution; a cross-correlation check is logged (not used to shift) as a sanity check on residual misalignment",
+  "gain_normalization_rule": "all signals (target, baseline, processed output) are peak-normalized to 0.95 before scoring, for consistency across conditions; note that SI-SDR is scale-invariant by construction and STOI applies its own internal short-term normalization, so this step primarily aids reproducibility and listening comparisons rather than changing metric values",
+  "clean_speech_usage": "clean speech is used only to construct the target signal and is never provided as input to WPE",
+  "metrics": ["STOI (primary)", "SI-SDR (signal-level)", "PESQ (optional, not used yet)"]
+}

@@ -1,0 +1,20 @@
+{
+  "predeclaration_file": "configs/checkpoint4_predeclaration.json",
+  "baseline": {
+    "stoi": 0.903812079433345,
+    "si_sdr_db": 6.169901622697113,
+    "alignment_residual_lag_samples": 0,
+    "target_length": 203971,
+    "baseline_length_before_crop": 203971
+  },
+  "wpe_single_mic": {
+    "stoi": 0.9345734425633826,
+    "si_sdr_db": 7.990856223626278,
+    "alignment_residual_lag_samples": 0
+  },
+  "wpe_four_mic": {
+    "stoi": 0.8844113934963326,
+    "si_sdr_db": 5.5780859891076515,
+    "alignment_residual_lag_samples": 0
+  }
+}
