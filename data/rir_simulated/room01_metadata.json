@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "room_dim_m": [
+    5.0,
+    4.0,
+    2.8
+  ],
+  "sampling_rate": 16000,
+  "rt60_target_s": 0.4,
+  "rt60_achieved_s": [
+    0.49166699087574156,
+    0.4911337474382402,
+    0.49166699010187453,
+    0.49113374616747596
+  ],
+  "source_distance_m": 1.0,
+  "source_position_m": [
+    3.5,
+    2.0,
+    1.4
+  ],
+  "mic_array_center_m": [
+    2.5,
+    2.0,
+    1.4
+  ],
+  "mic_spacing_m": 0.08,
+  "mic_positions_m": [
+    [
+      2.46,
+      1.96,
+      1.4
+    ],
+    [
+      2.54,
+      1.96,
+      1.4
+    ],
+    [
+      2.46,
+      2.04,
+      1.4
+    ],
+    [
+      2.54,
+      2.04,
+      1.4
+    ]
+  ],
+  "n_mics": 4,
+  "max_image_order": 59,
+  "wall_absorption": 0.2495125620004384,
+  "clean_speech_source": "data/clean/dev/5808-48608-0017.flac"
+}
