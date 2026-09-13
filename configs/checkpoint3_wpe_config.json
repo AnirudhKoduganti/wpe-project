@@ -1,0 +1,11 @@
+{
+  "prediction_delay_frames": 3,
+  "filter_length_taps": 20,
+  "iterations": 3,
+  "stft_hop_ms": 8,
+  "stft_size": 512,
+  "stft_shift": 128,
+  "processing_mode": "offline",
+  "sampling_rate": 16000,
+  "input_file": "data/reverberant/room01_utt01_reverberant.wav"
+}

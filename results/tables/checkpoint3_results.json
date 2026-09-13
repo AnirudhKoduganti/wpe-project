@@ -1,0 +1,34 @@
+{
+  "single_mic": {
+    "label": "single_mic",
+    "runtime_s": 0.664202900021337,
+    "warnings": [],
+    "error": null,
+    "has_nan": false,
+    "has_inf": false,
+    "peak_abs": 0.9498941501810388,
+    "is_clipping": false,
+    "rms": 0.11554476337282725,
+    "is_silent": false,
+    "output_shape": [
+      1,
+      204032
+    ]
+  },
+  "four_mic": {
+    "label": "four_mic",
+    "runtime_s": 2.1427057000109926,
+    "warnings": [],
+    "error": null,
+    "has_nan": false,
+    "has_inf": false,
+    "peak_abs": 0.7710336089986027,
+    "is_clipping": false,
+    "rms": 0.09566097686100294,
+    "is_silent": false,
+    "output_shape": [
+      4,
+      204032
+    ]
+  }
+}
