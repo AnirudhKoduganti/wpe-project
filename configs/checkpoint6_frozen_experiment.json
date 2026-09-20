@@ -1,0 +1,122 @@
+{
+  "all_nine_configurations": [
+    {
+      "id": "C1",
+      "delay": 2,
+      "taps": 10
+    },
+    {
+      "id": "C2",
+      "delay": 2,
+      "taps": 20
+    },
+    {
+      "id": "C3",
+      "delay": 2,
+      "taps": 30
+    },
+    {
+      "id": "C4",
+      "delay": 3,
+      "taps": 10
+    },
+    {
+      "id": "C5",
+      "delay": 3,
+      "taps": 20
+    },
+    {
+      "id": "C6",
+      "delay": 3,
+      "taps": 30
+    },
+    {
+      "id": "C7",
+      "delay": 4,
+      "taps": 10
+    },
+    {
+      "id": "C8",
+      "delay": 4,
+      "taps": 20
+    },
+    {
+      "id": "C9",
+      "delay": 4,
+      "taps": 30
+    }
+  ],
+  "top_three_shortlist": [
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "selection_metric": "Mean STOI improvement over no-processing baseline, averaged first within each (RT60, distance) cell, then averaged equally across the 6 cells (macro-average).",
+  "full_ranking": [
+    {
+      "config_id": "C7",
+      "macro_stoi_improvement": 0.02808392159677479,
+      "rank": 1
+    },
+    {
+      "config_id": "C8",
+      "macro_stoi_improvement": 0.02440232729883222,
+      "rank": 2
+    },
+    {
+      "config_id": "C9",
+      "macro_stoi_improvement": 0.02404705572013571,
+      "rank": 3
+    },
+    {
+      "config_id": "C4",
+      "macro_stoi_improvement": 0.011818365929072058,
+      "rank": 4
+    },
+    {
+      "config_id": "C5",
+      "macro_stoi_improvement": 4.1444637183069476e-05,
+      "rank": 5
+    },
+    {
+      "config_id": "C6",
+      "macro_stoi_improvement": -0.002231578767365485,
+      "rank": 6
+    },
+    {
+      "config_id": "C1",
+      "macro_stoi_improvement": -0.012712545582613533,
+      "rank": 7
+    },
+    {
+      "config_id": "C2",
+      "macro_stoi_improvement": -0.028556943077227687,
+      "rank": 8
+    },
+    {
+      "config_id": "C3",
+      "macro_stoi_improvement": -0.031801974209758374,
+      "rank": 9
+    }
+  ],
+  "target_definition_reference": "configs/checkpoint4_predeclaration.json",
+  "manifest_reference": "data/manifests/manifest.csv",
+  "dataset_scope_note": "This development run used 1 utterance per dev speaker (6 total) rather than the full 18, for compute tractability. See run script UTTERANCES_PER_SPEAKER constant.",
+  "git_commit_at_freeze": "a3d5d3bf50155a9acf654fc8424e1286bdf6e712",
+  "environment_reference": "results/tables/environment.txt",
+  "room_geometry": "G-A: 5.0 x 4.0 x 2.8 m",
+  "rt60_targets": [
+    0.2,
+    0.4,
+    0.6
+  ],
+  "distances_m": [
+    1.0,
+    2.5
+  ],
+  "snr_conditions": [
+    "clean",
+    "10dB"
+  ],
+  "replicates_per_cell": 2
+}
