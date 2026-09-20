@@ -1,0 +1,108 @@
+{
+  "development_top3": [
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "heldout_top3": [
+    "C7",
+    "C9",
+    "C8"
+  ],
+  "top3_overlap_count": 3,
+  "kendalls_tau": 0.9444444444444445,
+  "kendalls_tau_p_value": 4.96031746031746e-05,
+  "pairwise_order_agreement": 0.9722222222222222,
+  "pairwise_agreement_fraction": "35/36",
+  "best_of_nine_heldout": 0.0231630047203492,
+  "best_of_dev_top3_on_heldout": 0.0231630047203492,
+  "selection_regret_stoi": 0.0,
+  "heldout_ranking": [
+    {
+      "config_id": "C7",
+      "macro_stoi_improvement": 0.0231630047203492,
+      "rank": 1
+    },
+    {
+      "config_id": "C9",
+      "macro_stoi_improvement": 0.018900773641985225,
+      "rank": 2
+    },
+    {
+      "config_id": "C8",
+      "macro_stoi_improvement": 0.018320504916883227,
+      "rank": 3
+    },
+    {
+      "config_id": "C4",
+      "macro_stoi_improvement": 0.007607132281891346,
+      "rank": 4
+    },
+    {
+      "config_id": "C5",
+      "macro_stoi_improvement": -0.0054669896455392655,
+      "rank": 5
+    },
+    {
+      "config_id": "C6",
+      "macro_stoi_improvement": -0.007422020437933947,
+      "rank": 6
+    },
+    {
+      "config_id": "C1",
+      "macro_stoi_improvement": -0.01774887508360581,
+      "rank": 7
+    },
+    {
+      "config_id": "C2",
+      "macro_stoi_improvement": -0.036167099906295165,
+      "rank": 8
+    },
+    {
+      "config_id": "C3",
+      "macro_stoi_improvement": -0.039395836834774024,
+      "rank": 9
+    }
+  ],
+  "numerical_failures": 0,
+  "signal_failures": 11,
+  "total_runs": 1440,
+  "runtime_summary": {
+    "mean_runtime_s_by_config": {
+      "C7": 1.121,
+      "C1": 1.123,
+      "C4": 1.124,
+      "C5": 2.209,
+      "C8": 2.218,
+      "C2": 2.24,
+      "C9": 6.307,
+      "C6": 6.393,
+      "C3": 6.557
+    },
+    "total_runtime_s": 4217.880999999999,
+    "mean_runtime_s_by_rt60": {
+      "0.2": 3.234,
+      "0.4": 3.389,
+      "0.6": 3.141
+    }
+  },
+  "failure_breakdown": {
+    "by_rt60": {
+      "0.2": 5,
+      "0.6": 4,
+      "0.4": 2
+    },
+    "by_config": {
+      "C7": 3,
+      "C4": 2,
+      "C1": 2,
+      "C2": 2,
+      "C8": 1,
+      "C9": 1
+    },
+    "by_snr": {
+      "clean": 8,
+      "10dB": 3
+    }
+  }
+}
