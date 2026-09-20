@@ -1,0 +1,9 @@
+{
+  "stft_size": 512,
+  "stft_shift": 128,
+  "iterations": 3,
+  "reference_channel": 0,
+  "processing_mode": "offline",
+  "normalization_peak": 0.95,
+  "target_definition": "direct + 50ms, 5ms taper"
+}
