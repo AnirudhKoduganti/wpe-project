@@ -1,0 +1,139 @@
+{
+  "development_top3": [
+    "C7",
+    "C8",
+    "C9"
+  ],
+  "geometry_heldout_top3": [
+    "C7",
+    "C9",
+    "C8"
+  ],
+  "top3_overlap_count": 3,
+  "kendalls_tau": 0.9444444444444445,
+  "kendalls_tau_p_value": 4.96031746031746e-05,
+  "pairwise_order_agreement": 0.9722222222222222,
+  "pairwise_agreement_fraction": "35/36",
+  "best_of_nine_geom_heldout": 0.01336239490773676,
+  "best_of_dev_top3_on_geom_heldout": 0.01336239490773676,
+  "selection_regret_stoi": 0.0,
+  "geometry_heldout_ranking": [
+    {
+      "config_id": "C7",
+      "macro_stoi_improvement": 0.01336239490773676,
+      "rank": 1
+    },
+    {
+      "config_id": "C9",
+      "macro_stoi_improvement": 0.012254418414297183,
+      "rank": 2
+    },
+    {
+      "config_id": "C8",
+      "macro_stoi_improvement": 0.011552524985904247,
+      "rank": 3
+    },
+    {
+      "config_id": "C4",
+      "macro_stoi_improvement": 0.0009203385817364412,
+      "rank": 4
+    },
+    {
+      "config_id": "C5",
+      "macro_stoi_improvement": -0.006471668652095215,
+      "rank": 5
+    },
+    {
+      "config_id": "C6",
+      "macro_stoi_improvement": -0.0065835814598908865,
+      "rank": 6
+    },
+    {
+      "config_id": "C1",
+      "macro_stoi_improvement": -0.021023221337687387,
+      "rank": 7
+    },
+    {
+      "config_id": "C2",
+      "macro_stoi_improvement": -0.031075007402353475,
+      "rank": 8
+    },
+    {
+      "config_id": "C3",
+      "macro_stoi_improvement": -0.03361323030334903,
+      "rank": 9
+    }
+  ],
+  "numerical_failures": 0,
+  "signal_failures": 13,
+  "total_runs": 2880,
+  "runtime_mean_by_config": {
+    "C1": 1.137,
+    "C2": 2.246,
+    "C3": 6.474,
+    "C4": 1.158,
+    "C5": 2.248,
+    "C6": 6.624,
+    "C7": 1.158,
+    "C8": 2.247,
+    "C9": 6.544
+  },
+  "failure_by_geometry": {
+    "G-C": 9,
+    "G-D": 4
+  },
+  "failure_by_rt60": {
+    "0.4": 6,
+    "0.2": 4,
+    "0.6": 3
+  },
+  "failure_by_distance": {
+    "2.5": 9,
+    "1.0": 4
+  },
+  "note": "Tests unseen geometries within the same Pyroomacoustics simulator; does not compare simulation paradigms.",
+  "runtime_summary": {
+    "mean_runtime_s_by_config": {
+      "C1": 1.137,
+      "C4": 1.158,
+      "C7": 1.158,
+      "C2": 2.246,
+      "C8": 2.247,
+      "C5": 2.248,
+      "C3": 6.474,
+      "C9": 6.544,
+      "C6": 6.624
+    },
+    "total_runtime_s": 8592.754,
+    "mean_runtime_s_by_geometry": {
+      "G-C": 3.307,
+      "G-D": 3.324
+    }
+  },
+  "failure_breakdown_detail": {
+    "by_geometry": {
+      "G-C": 9,
+      "G-D": 4
+    },
+    "by_rt60": {
+      "0.4": 6,
+      "0.2": 4,
+      "0.6": 3
+    },
+    "by_distance": {
+      "2.5": 9,
+      "1.0": 4
+    },
+    "by_config": {
+      "C7": 5,
+      "C8": 3,
+      "C1": 2,
+      "C2": 2,
+      "C9": 1
+    },
+    "by_snr": {
+      "clean": 8,
+      "10dB": 5
+    }
+  }
+}

@@ -1,0 +1,434 @@
+{
+  "H_G-C_rt0.2_d1.0_rep0": {
+    "seed": 401,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.19680421314914745,
+      0.19662370188117492,
+      0.19680421338806214,
+      0.19662370220188433
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.2_d1.0_rep1": {
+    "seed": 402,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.19680421314914745,
+      0.19662370188117492,
+      0.19680421338806214,
+      0.19662370220188433
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.2_d2.5_rep0": {
+    "seed": 403,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.2057490960772737,
+      0.2062221085704131,
+      0.2057490968575756,
+      0.20622210902522628
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.2_d2.5_rep1": {
+    "seed": 404,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.2057490960772737,
+      0.2062221085704131,
+      0.2057490968575756,
+      0.20622210902522628
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.4_d1.0_rep0": {
+    "seed": 405,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.500139740399096,
+      0.5006823993974001,
+      0.5001397392341831,
+      0.5006823988900644
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.4_d1.0_rep1": {
+    "seed": 406,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.500139740399096,
+      0.5006823993974001,
+      0.5001397392341831,
+      0.5006823988900644
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.4_d2.5_rep0": {
+    "seed": 407,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.5137071478400766,
+      0.5123611085445074,
+      0.5137071495898532,
+      0.5123611081106728
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.4_d2.5_rep1": {
+    "seed": 408,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.5137071478400766,
+      0.5123611085445074,
+      0.5137071495898532,
+      0.5123611081106728
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.6_d1.0_rep0": {
+    "seed": 409,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      0.7985214759851369,
+      0.7968012605082208,
+      0.7985214760274858,
+      0.7968012618919101
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.6_d1.0_rep1": {
+    "seed": 410,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      0.7985214759851369,
+      0.7968012605082208,
+      0.7985214760274858,
+      0.7968012618919101
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.6_d2.5_rep0": {
+    "seed": 411,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      0.8246325253448745,
+      0.825741618078292,
+      0.8246325261389196,
+      0.8257416167191396
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-C_rt0.6_d2.5_rep1": {
+    "seed": 412,
+    "room_dim_m": [
+      6.0,
+      5.0,
+      3.0
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      0.8246325253448745,
+      0.825741618078292,
+      0.8246325261389196,
+      0.8257416167191396
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-C"
+  },
+  "H_G-D_rt0.2_d1.0_rep0": {
+    "seed": 413,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.20925718071909666,
+      0.21110083060367,
+      0.20925718129428428,
+      0.2111008314568759
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.2_d1.0_rep1": {
+    "seed": 414,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.20925718071909666,
+      0.21110083060367,
+      0.20925718129428428,
+      0.2111008314568759
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.2_d2.5_rep0": {
+    "seed": 415,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.21905272159867362,
+      0.21881500952310418,
+      0.21905272212502,
+      0.21881500973395693
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.2_d2.5_rep1": {
+    "seed": 416,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.2,
+    "rt60_achieved_s": [
+      0.21905272159867362,
+      0.21881500952310418,
+      0.21905272212502,
+      0.21881500973395693
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.4_d1.0_rep0": {
+    "seed": 417,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.6141635022714295,
+      0.6148268392273709,
+      0.6141635013492702,
+      0.6148268386512851
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.4_d1.0_rep1": {
+    "seed": 418,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.6141635022714295,
+      0.6148268392273709,
+      0.6141635013492702,
+      0.6148268386512851
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.4_d2.5_rep0": {
+    "seed": 419,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.629225837177328,
+      0.6303552105528412,
+      0.6292258368955199,
+      0.6303552100735852
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.4_d2.5_rep1": {
+    "seed": 420,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.4,
+    "rt60_achieved_s": [
+      0.629225837177328,
+      0.6303552105528412,
+      0.6292258368955199,
+      0.6303552100735852
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.6_d1.0_rep0": {
+    "seed": 421,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      1.0306064968462516,
+      1.028164553849498,
+      1.0306064978457674,
+      1.028164559928384
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.6_d1.0_rep1": {
+    "seed": 422,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      1.0306064968462516,
+      1.028164553849498,
+      1.0306064978457674,
+      1.028164559928384
+    ],
+    "source_distance_m": 1.0,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.6_d2.5_rep0": {
+    "seed": 423,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      1.0402490995600977,
+      1.0437987426618642,
+      1.040249101085929,
+      1.043798742031152
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  },
+  "H_G-D_rt0.6_d2.5_rep1": {
+    "seed": 424,
+    "room_dim_m": [
+      10.0,
+      6.0,
+      3.5
+    ],
+    "rt60_target_s": 0.6,
+    "rt60_achieved_s": [
+      1.0402490995600977,
+      1.0437987426618642,
+      1.040249101085929,
+      1.043798742031152
+    ],
+    "source_distance_m": 2.5,
+    "mic_spacing_m": 0.08,
+    "geometry_name": "G-D"
+  }
+}
