@@ -3,9 +3,6 @@ import json
 
 df = pd.read_csv('results/tables/checkpoint8_geometry_heldout_results.csv')
 
-# ==========================================================
-# RUNTIME SUMMARY
-# ==========================================================
 runtime_df = df[df['config_id'] != 'baseline'].copy()
 
 runtime_by_config = runtime_df.groupby('config_id')['runtime_s'].agg(
@@ -25,9 +22,6 @@ print(f"\nTotal WPE compute time: {total_runtime_s:.1f}s ({total_runtime_s/60:.1
 
 runtime_by_config.to_csv('results/tables/checkpoint8_runtime_summary.csv', index=False)
 
-# ==========================================================
-# FAILURE BREAKDOWN
-# ==========================================================
 failures = df[df['signal_failure'] == True].copy()
 
 print(f"\n=== Signal failure breakdown ({len(failures)} total) ===")
@@ -51,9 +45,6 @@ print(failures['snr_condition'].value_counts().to_string())
 
 failures.to_csv('results/tables/checkpoint8_failure_breakdown.csv', index=False)
 
-# ==========================================================
-# Merge into transfer summary
-# ==========================================================
 with open('results/tables/checkpoint8_transfer_summary.json') as f:
     summary = json.load(f)
 
