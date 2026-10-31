@@ -19,12 +19,9 @@ sys.path.append(simulation_dir)
 
 from generate_room import generate_room_rir, convolve_multichannel
 
-# ==========================================================
-# FIXED SETTINGS (kept constant across this whole comparison, per the guide)
-# ==========================================================
 FS = 16000
 STFT_SIZE = 512
-STFT_SHIFT = 128          # 8 ms hop
+STFT_SHIFT = 128          
 ITERATIONS = 3
 REFERENCE_CHANNEL = 0
 PROCESSING_MODE = 'offline'
@@ -32,9 +29,6 @@ EARLY_MS = 50
 TAPER_MS = 5
 NORM_PEAK = 0.95
 
-# ==========================================================
-# THE NINE CONFIGURATIONS (C1-C9, from the guide's table)
-# ==========================================================
 CONFIGS = [
     {'id': 'C1', 'delay': 2, 'taps': 10},
     {'id': 'C2', 'delay': 2, 'taps': 20},
@@ -47,9 +41,6 @@ CONFIGS = [
     {'id': 'C9', 'delay': 4, 'taps': 30},
 ]
 
-# ==========================================================
-# THREE ROOM CONDITIONS (small pilot per Checkpoint 5 — not the full matrix)
-# ==========================================================
 ROOMS = [
     {'room_id': 'P01_mild_near',   'room_dim': [5.0, 4.0, 2.8], 'rt60_target': 0.2, 'source_distance': 1.0, 'seed': 101},
     {'room_id': 'P02_moderate_near', 'room_dim': [5.0, 4.0, 2.8], 'rt60_target': 0.4, 'source_distance': 1.0, 'seed': 102},
@@ -65,13 +56,8 @@ AUDIO_DIR = 'results/audio'
 os.makedirs(RESULTS_DIR, exist_ok=True)
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
-# Which configs to save audio for, per room, so you have something concrete
-# to listen to when filling in listening_notes (worst / mid / best-ish spread)
 CONFIGS_TO_SAVE = ['C1', 'C3', 'C7', 'C8', 'C9']
 
-# ==========================================================
-# Reused target-construction logic (same rule as Checkpoint 4)
-# ==========================================================
 def detect_direct_arrival(rir):
     return int(np.argmax(np.abs(rir)))
 
@@ -123,9 +109,6 @@ def run_wpe(y_multichannel, delay, taps, iterations):
     z = istft(Z.transpose(1, 2, 0), size=STFT_SIZE, shift=STFT_SHIFT)
     return z, runtime, caught, None
 
-# ==========================================================
-# MAIN LOOP
-# ==========================================================
 clean, sr = sf.read(CLEAN_SPEECH_PATH)
 assert sr == FS
 
@@ -143,11 +126,9 @@ for room_cfg in ROOMS:
 
     reverberant = convolve_multichannel(clean, rir_array)
 
-    # ---- Save the reverberant baseline audio for this room (needed for listening) ----
     baseline_audio_path = os.path.join(AUDIO_DIR, f"checkpoint5_{room_cfg['room_id']}_baseline.wav")
     sf.write(baseline_audio_path, reverberant[REFERENCE_CHANNEL], FS)
 
-    # Build target (fixed target definition, per predeclaration)
     direct_idx = [detect_direct_arrival(rir_array[m]) for m in range(4)]
     target_rirs = np.array([
         build_target_rir(rir_array[m], direct_idx[m], FS, EARLY_MS, TAPER_MS)
@@ -160,7 +141,6 @@ for room_cfg in ROOMS:
         target[m, :len(t)] = t
     target_ref = target[REFERENCE_CHANNEL]
 
-    # Baseline score for this room (no processing)
     t_al, b_al = align_crop(target_ref, reverberant[REFERENCE_CHANNEL])
     baseline_stoi = stoi(peak_normalize(t_al), peak_normalize(b_al), FS, extended=False)
     baseline_sisdr = si_sdr(peak_normalize(t_al), peak_normalize(b_al))
@@ -182,7 +162,7 @@ for room_cfg in ROOMS:
             'runtime_s': round(runtime, 3),
             'numerical_failure': numerical_failure,
             'warnings': '; '.join(warns) if warns else '',
-            'listening_notes': '',  # fill in manually after listening
+            'listening_notes': '', 
         }
 
         if numerical_failure:
@@ -206,7 +186,6 @@ for room_cfg in ROOMS:
                 row.update({'stoi': s, 'si_sdr_db': sd, 'signal_failure': False})
                 print(f"  [{cfg['id']}] delay={cfg['delay']}, taps={cfg['taps']} -> STOI={s:.4f}, SI-SDR={sd:.2f}dB, runtime={runtime:.2f}s")
 
-                # ---- Save audio for select configs, for the listening-notes step ----
                 if cfg['id'] in CONFIGS_TO_SAVE:
                     cfg_audio_path = os.path.join(
                         AUDIO_DIR, f"checkpoint5_{room_cfg['room_id']}_{cfg['id']}.wav"
@@ -215,9 +194,6 @@ for room_cfg in ROOMS:
 
         results.append(row)
 
-# ==========================================================
-# SAVE RESULTS TABLE
-# ==========================================================
 df = pd.DataFrame(results)
 df.to_csv(os.path.join(RESULTS_DIR, 'checkpoint5_parameter_study.csv'), index=False)
 
