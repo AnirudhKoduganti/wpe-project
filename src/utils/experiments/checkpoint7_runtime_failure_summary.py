@@ -3,9 +3,7 @@ import json
 
 df = pd.read_csv('results/tables/checkpoint7_heldout_results.csv')
 
-# ==========================================================
-# RUNTIME SUMMARY (per configuration, and per RT60 condition)
-# ==========================================================
+
 runtime_df = df[df['config_id'] != 'baseline'].copy()
 
 runtime_by_config = runtime_df.groupby('config_id')['runtime_s'].agg(
@@ -28,9 +26,6 @@ print(f"\nTotal WPE compute time across all Checkpoint 7 runs: {total_runtime_s:
 
 runtime_by_config.to_csv('results/tables/checkpoint7_runtime_summary.csv', index=False)
 
-# ==========================================================
-# FAILURE BREAKDOWN — where exactly did the 11 signal failures occur?
-# ==========================================================
 failures = df[df['signal_failure'] == True].copy()
 
 print(f"\n=== Signal failure breakdown ({len(failures)} total) ===")
@@ -48,9 +43,6 @@ print(failures['snr_condition'].value_counts().to_string())
 
 failures.to_csv('results/tables/checkpoint7_failure_breakdown.csv', index=False)
 
-# ==========================================================
-# Update the transfer summary JSON with runtime + failure detail
-# ==========================================================
 with open('results/tables/checkpoint7_transfer_summary.json') as f:
     summary = json.load(f)
 
