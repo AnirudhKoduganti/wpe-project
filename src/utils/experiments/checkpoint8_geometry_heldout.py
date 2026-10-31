@@ -17,9 +17,6 @@ sys.path.append(os.path.join(current_dir, '..', 'simulation'))
 from generate_room import generate_room_rir, convolve_multichannel
 from noise import add_noise_to_snr
 
-# ==========================================================
-# LOAD THE FROZEN EXPERIMENT — no changes allowed
-# ==========================================================
 with open('configs/checkpoint6_frozen_experiment.json') as f:
     FROZEN = json.load(f)
 
@@ -27,9 +24,6 @@ CONFIGS = FROZEN['all_nine_configurations']
 TOP3_DEV = FROZEN['top_three_shortlist']
 DEV_RANKING = pd.DataFrame(FROZEN['full_ranking'])
 
-# ==========================================================
-# FIXED SETTINGS — identical everywhere
-# ==========================================================
 FS = 16000
 STFT_SIZE = 512
 STFT_SHIFT = 128
@@ -40,13 +34,11 @@ TAPER_MS = 5
 NORM_PEAK = 0.95
 MIC_SPACING = 0.08
 
-# NEW geometries, unseen during development (which used G-A: 5x4x2.8)
 GEOMETRIES = {
     'G-C': [6.0, 5.0, 3.0],
     'G-D': [10.0, 6.0, 3.5],
 }
 
-# SAME broad ranges as development — geometry is the only changed factor
 RT60_TARGETS = [0.2, 0.4, 0.6]
 DISTANCES = [1.0, 2.5]
 N_REPLICATES = 2
@@ -58,7 +50,6 @@ MANIFEST_PATH = 'data/manifests/manifest.csv'
 RESULTS_CSV = 'results/tables/checkpoint8_geometry_heldout_results.csv'
 os.makedirs('results/tables', exist_ok=True)
 
-# NEW seed range — must not overlap Checkpoint 6 (201-212) or 7 (301-312)
 SEED_BASE = 400
 
 CSV_COLUMNS = [
@@ -67,9 +58,6 @@ CSV_COLUMNS = [
     'stoi', 'si_sdr_db', 'runtime_s', 'numerical_failure', 'signal_failure', 'warnings'
 ]
 
-# ==========================================================
-# Shared helpers — identical logic to Checkpoints 4-7
-# ==========================================================
 def detect_direct_arrival(rir):
     return int(np.argmax(np.abs(rir)))
 
@@ -131,9 +119,6 @@ def score_and_check(target_ref, out_ref):
     sd = si_sdr(peak_normalize(t_al), peak_normalize(o_al))
     return s, sd, False
 
-# ==========================================================
-# RESUME SUPPORT
-# ==========================================================
 if os.path.exists(RESULTS_CSV):
     existing = pd.read_csv(RESULTS_CSV)
     done_keys = set(zip(existing['room_id'], existing['snr_condition'],
@@ -146,9 +131,6 @@ else:
 def append_row(row):
     pd.DataFrame([row], columns=CSV_COLUMNS).to_csv(RESULTS_CSV, mode='a', header=False, index=False)
 
-# ==========================================================
-# Same held-out test utterances as Checkpoint 7 (disjoint from development)
-# ==========================================================
 manifest = pd.read_csv(MANIFEST_PATH)
 test = manifest[manifest['split'] == 'test']
 utt_rows = test.groupby('speaker_id').head(UTTERANCES_PER_SPEAKER)
@@ -159,9 +141,6 @@ print(f"Geometries: {GEOMETRIES}")
 total_estimate = len(GEOMETRIES) * len(RT60_TARGETS) * len(DISTANCES) * N_REPLICATES * len(SNR_CONDITIONS) * len(UTTERANCES) * (1 + len(CONFIGS))
 print(f"Estimated total rows: {total_estimate}")
 
-# ==========================================================
-# MAIN LOOP — two geometries x full RT60/distance/replicate/SNR grid
-# ==========================================================
 room_metadata_log = {}
 combo_index = 0
 
@@ -245,9 +224,6 @@ with open('results/tables/checkpoint8_room_metadata.json', 'w') as f:
 
 print(f"\nCheckpoint 8 data collection complete. {len(done_keys)} total rows in {RESULTS_CSV}")
 
-# ==========================================================
-# ANALYSIS — same structure as Checkpoint 7
-# ==========================================================
 df = pd.read_csv(RESULTS_CSV)
 baseline = df[df['config_id'] == 'baseline'][
     ['room_id', 'snr_condition', 'utterance', 'stoi', 'rt60_target', 'distance_m']
@@ -296,11 +272,9 @@ best_of_9 = geom_macro['macro_stoi_improvement'].max()
 best_of_top3_dev = geom_macro[geom_macro['config_id'].isin(TOP3_DEV)]['macro_stoi_improvement'].max()
 selection_regret = best_of_9 - best_of_top3_dev
 
-# Runtime summary
 runtime_by_config = configs_df.groupby('config_id')['runtime_s'].agg(['mean', 'std', 'count']).round(3).reset_index()
 runtime_by_config.to_csv('results/tables/checkpoint8_runtime_summary.csv', index=False)
 
-# Failure breakdown
 failures = df[df['signal_failure'] == True].copy()
 failures.to_csv('results/tables/checkpoint8_failure_breakdown.csv', index=False)
 
