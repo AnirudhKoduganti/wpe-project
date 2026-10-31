@@ -17,11 +17,9 @@ configs_df = df[df['config_id'] != 'baseline'].copy()
 merged = configs_df.merge(baseline, on=['room_id', 'snr_condition', 'utterance', 'rt60_target', 'distance_m'])
 merged['stoi_improvement'] = merged['stoi'] - merged['baseline_stoi']
 
-# Step 1-2: average across utterances/replicates/SNR within each (config, rt60, distance) cell
 cell_avg = merged.groupby(['config_id', 'rt60_target', 'distance_m'])['stoi_improvement'].mean().reset_index()
 cell_avg.rename(columns={'stoi_improvement': 'cell_stoi_improvement'}, inplace=True)
 
-# Step 3-4: average equally across the 6 (RT60 x distance) cells -> macro score per config
 macro = cell_avg.groupby('config_id')['cell_stoi_improvement'].mean().reset_index()
 macro.rename(columns={'cell_stoi_improvement': 'macro_stoi_improvement'}, inplace=True)
 macro = macro.sort_values('macro_stoi_improvement', ascending=False).reset_index(drop=True)
@@ -36,7 +34,6 @@ cell_avg.to_csv('results/tables/checkpoint6_cell_level.csv', index=False)
 top3 = macro.head(3)['config_id'].tolist()
 print(f"\nTop-3 shortlist: {top3}")
 
-# ---- Get git commit hash for a hard freeze marker ----
 try:
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().strip()
 except Exception:
