@@ -16,9 +16,7 @@ sys.path.append(os.path.join(current_dir, '..', 'simulation'))
 from generate_room import generate_room_rir, convolve_multichannel
 from noise import add_noise_to_snr
 
-# ==========================================================
-# FIXED SETTINGS (unchanged from Checkpoints 3-5 — kept constant)
-# ==========================================================
+
 FS = 16000
 STFT_SIZE = 512
 STFT_SHIFT = 128
@@ -28,7 +26,7 @@ EARLY_MS = 50
 TAPER_MS = 5
 NORM_PEAK = 0.95
 MIC_SPACING = 0.08
-ROOM_DIM = [5.0, 4.0, 2.8]  # Geometry G-A, matches Checkpoints 2-5
+ROOM_DIM = [5.0, 4.0, 2.8]  
 
 CONFIGS = [
     {'id': 'C1', 'delay': 2, 'taps': 10}, {'id': 'C2', 'delay': 2, 'taps': 20}, {'id': 'C3', 'delay': 2, 'taps': 30},
@@ -39,10 +37,9 @@ CONFIGS = [
 RT60_TARGETS = [0.2, 0.4, 0.6]
 DISTANCES = [1.0, 2.5]
 N_REPLICATES = 2
-SNR_CONDITIONS = [None, 10]   # None = clean
+SNR_CONDITIONS = [None, 10]   
 
-# ---- SCOPE DECISION (documented): 1 utterance/speaker = 6 total for this run.
-# Raise to 3 for the full 18-utterance matrix once this passes and time allows.
+
 UTTERANCES_PER_SPEAKER = 1
 
 MANIFEST_PATH = 'data/manifests/manifest.csv'
@@ -55,9 +52,7 @@ CSV_COLUMNS = [
     'stoi', 'si_sdr_db', 'runtime_s', 'numerical_failure', 'signal_failure', 'warnings'
 ]
 
-# ==========================================================
-# Shared helper functions (same rules as Checkpoints 4-5)
-# ==========================================================
+
 def detect_direct_arrival(rir):
     return int(np.argmax(np.abs(rir)))
 
@@ -119,9 +114,7 @@ def score_and_check(target_ref, out_ref):
     sd = si_sdr(peak_normalize(t_al), peak_normalize(o_al))
     return s, sd, False
 
-# ==========================================================
-# RESUME SUPPORT: load already-completed rows, skip them
-# ==========================================================
+
 if os.path.exists(RESULTS_CSV):
     existing = pd.read_csv(RESULTS_CSV)
     done_keys = set(zip(existing['room_id'], existing['snr_condition'],
@@ -134,9 +127,7 @@ else:
 def append_row(row):
     pd.DataFrame([row], columns=CSV_COLUMNS).to_csv(RESULTS_CSV, mode='a', header=False, index=False)
 
-# ==========================================================
-# Load development utterances (subset per speaker)
-# ==========================================================
+
 manifest = pd.read_csv(MANIFEST_PATH)
 dev = manifest[manifest['split'] == 'dev']
 utt_rows = dev.groupby('speaker_id').head(UTTERANCES_PER_SPEAKER)
@@ -199,7 +190,7 @@ for rt60_target in RT60_TARGETS:
                         })
                         done_keys.add(key)
 
-                    # ---- all nine configs ----
+                    
                     for cfg in CONFIGS:
                         key = (room_id, snr_label, utt_id, cfg['id'])
                         if key in done_keys:
