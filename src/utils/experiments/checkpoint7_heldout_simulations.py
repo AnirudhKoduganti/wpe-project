@@ -17,19 +17,13 @@ sys.path.append(os.path.join(current_dir, '..', 'simulation'))
 from generate_room import generate_room_rir, convolve_multichannel
 from noise import add_noise_to_snr
 
-# ==========================================================
-# LOAD THE FROZEN EXPERIMENT (Checkpoint 6) — do not deviate from this
-# ==========================================================
 with open('configs/checkpoint6_frozen_experiment.json') as f:
     FROZEN = json.load(f)
 
 CONFIGS = FROZEN['all_nine_configurations']
 TOP3_DEV = FROZEN['top_three_shortlist']
-DEV_RANKING = pd.DataFrame(FROZEN['full_ranking'])  # has config_id, macro_stoi_improvement, rank
+DEV_RANKING = pd.DataFrame(FROZEN['full_ranking'])  
 
-# ==========================================================
-# FIXED SETTINGS — identical to Checkpoint 6 (same array, simulator, target rule)
-# ==========================================================
 FS = 16000
 STFT_SIZE = 512
 STFT_SHIFT = 128
@@ -39,21 +33,21 @@ EARLY_MS = 50
 TAPER_MS = 5
 NORM_PEAK = 0.95
 MIC_SPACING = 0.08
-ROOM_DIM = [5.0, 4.0, 2.8]  # same geometry G-A — this is a HELD-OUT test, not a new-geometry test
+ROOM_DIM = [5.0, 4.0, 2.8]  
 
-# SAME broad ranges as development (per the guide's requirement)
+
 RT60_TARGETS = [0.2, 0.4, 0.6]
 DISTANCES = [1.0, 2.5]
 N_REPLICATES = 2
 SNR_CONDITIONS = [None, 10]
 
-UTTERANCES_PER_SPEAKER = 1  # matches Checkpoint 6's scope decision
+UTTERANCES_PER_SPEAKER = 1  
 
 MANIFEST_PATH = 'data/manifests/manifest.csv'
 RESULTS_CSV = 'results/tables/checkpoint7_heldout_results.csv'
 os.makedirs('results/tables', exist_ok=True)
 
-# NEW seed range — must not overlap with Checkpoint 6's seeds (201-212)
+
 SEED_BASE = 300
 
 CSV_COLUMNS = [
@@ -62,9 +56,7 @@ CSV_COLUMNS = [
     'stoi', 'si_sdr_db', 'runtime_s', 'numerical_failure', 'signal_failure', 'warnings'
 ]
 
-# ==========================================================
-# Shared helper functions — IDENTICAL logic to Checkpoints 4-6
-# ==========================================================
+
 def detect_direct_arrival(rir):
     return int(np.argmax(np.abs(rir)))
 
@@ -126,9 +118,7 @@ def score_and_check(target_ref, out_ref):
     sd = si_sdr(peak_normalize(t_al), peak_normalize(o_al))
     return s, sd, False
 
-# ==========================================================
-# RESUME SUPPORT
-# ==========================================================
+
 if os.path.exists(RESULTS_CSV):
     existing = pd.read_csv(RESULTS_CSV)
     done_keys = set(zip(existing['room_id'], existing['snr_condition'],
@@ -141,18 +131,14 @@ else:
 def append_row(row):
     pd.DataFrame([row], columns=CSV_COLUMNS).to_csv(RESULTS_CSV, mode='a', header=False, index=False)
 
-# ==========================================================
-# Load TEST utterances — must be disjoint from dev speakers (manifest already enforces this)
-# ==========================================================
+
 manifest = pd.read_csv(MANIFEST_PATH)
 test = manifest[manifest['split'] == 'test']
 utt_rows = test.groupby('speaker_id').head(UTTERANCES_PER_SPEAKER)
 UTTERANCES = list(utt_rows['path'])
 print(f"Using {len(UTTERANCES)} TEST utterances (held-out speakers, never used in development): {UTTERANCES}")
 
-# ==========================================================
-# MAIN LOOP — same room-condition structure as Checkpoint 6, NEW seeds
-# ==========================================================
+
 room_metadata_log = {}
 combo_index = 0
 
@@ -160,7 +146,7 @@ for rt60_target in RT60_TARGETS:
     for distance in DISTANCES:
         for replicate in range(N_REPLICATES):
             combo_index += 1
-            seed = SEED_BASE + combo_index  # 301, 302, ... never overlaps dev seeds 201-212
+            seed = SEED_BASE + combo_index  
             room_id = f"M_rt{rt60_target}_d{distance}_rep{replicate}"
 
             rir_array, room_meta = generate_room_rir(ROOM_DIM, FS, rt60_target, distance, MIC_SPACING, seed)
@@ -189,7 +175,7 @@ for rt60_target in RT60_TARGETS:
                         target[m, :len(t)] = t
                     target_ref = target[REFERENCE_CHANNEL]
 
-                    # ---- baseline ----
+                    
                     key = (room_id, snr_label, utt_id, 'baseline')
                     if key not in done_keys:
                         t_al, b_al = align_crop(target_ref, reverberant[REFERENCE_CHANNEL])
@@ -205,7 +191,7 @@ for rt60_target in RT60_TARGETS:
                         })
                         done_keys.add(key)
 
-                    # ---- frozen nine configs, no retuning ----
+                    
                     for cfg in CONFIGS:
                         key = (room_id, snr_label, utt_id, cfg['id'])
                         if key in done_keys:
@@ -236,9 +222,7 @@ with open('results/tables/checkpoint7_room_metadata.json', 'w') as f:
 
 print(f"\nCheckpoint 7 data collection complete. {len(done_keys)} total rows in {RESULTS_CSV}")
 
-# ==========================================================
-# ANALYSIS: ranking, rank concordance, top-3 overlap, selection regret
-# ==========================================================
+
 df = pd.read_csv(RESULTS_CSV)
 baseline = df[df['config_id'] == 'baseline'][
     ['room_id', 'snr_condition', 'utterance', 'stoi', 'rt60_target', 'distance_m']
@@ -261,13 +245,12 @@ heldout_macro.to_csv('results/tables/checkpoint7_ranking.csv', index=False)
 print("\n=== Held-out ranking (macro STOI improvement) ===")
 print(heldout_macro.to_string(index=False))
 
-# ---- Rank concordance with development ranking ----
+
 merged_ranks = DEV_RANKING[['config_id', 'rank']].merge(
     heldout_macro[['config_id', 'rank']], on='config_id', suffixes=('_dev', '_heldout')
 )
 tau, p_value = kendalltau(merged_ranks['rank_dev'], merged_ranks['rank_heldout'])
 
-# Pairwise-order agreement (of the 36 config pairs)
 pairs_total, pairs_agree = 0, 0
 configs_list = merged_ranks['config_id'].tolist()
 for i in range(len(configs_list)):
@@ -282,11 +265,9 @@ for i in range(len(configs_list)):
             pairs_agree += 1
 pairwise_agreement = pairs_agree / pairs_total
 
-# ---- Top-3 overlap ----
 top3_heldout = heldout_macro.head(3)['config_id'].tolist()
 top3_overlap = len(set(TOP3_DEV) & set(top3_heldout))
 
-# ---- Selection regret ----
 best_of_9 = heldout_macro['macro_stoi_improvement'].max()
 best_of_top3_dev = heldout_macro[heldout_macro['config_id'].isin(TOP3_DEV)]['macro_stoi_improvement'].max()
 selection_regret = best_of_9 - best_of_top3_dev
