@@ -4,7 +4,7 @@ import random
 import csv
 import soundfile as sf
 
-random.seed(42)  # fixed seed = reproducible speaker/utterance selection
+random.seed(42)  
 
 def collect_speaker_files(root_dir, n_speakers, n_utts_per_speaker, exclude_speakers=None):
     """Randomly pick n_speakers from root_dir, and n_utts_per_speaker .flac files from each."""
@@ -49,13 +49,12 @@ def copy_and_log(selected, dest_dir, split_name, manifest_rows):
         })
 
 
-# ---- EDIT THESE PATHS ----
 TRAIN_CLEAN_100 = r'C:\Users\Anirudh\Downloads\train-clean-100\LibriSpeech\train-clean-100'
 TEST_CLEAN = r'C:\Users\Anirudh\Downloads\test-clean\LibriSpeech\test-clean'
 DEV_DEST = 'data/clean/dev'
 TEST_DEST = 'data/clean/test'
 MANIFEST_PATH = 'data/manifests/manifest.csv'
-# ---------------------------
+
 
 manifest_rows = []
 
